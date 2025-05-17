@@ -90,6 +90,7 @@ function didSnakeEatTheFood(snakeX, snakeY) {
 function updateGameArea() {
 
   var snakeAteFootVar = false;
+  var isSnakeOnItself = false
 
   createGameArea();
   
@@ -97,53 +98,47 @@ function updateGameArea() {
   var snakeX = newPosition.snakeX;
   var snakeY = newPosition.snakeY;
     
-  // var IsSnakeOnItself = snakeOnItself(snakeX, snakeY, snake)  
-
-  /*
-  if(IsSnakeOnItself) {
-    writeScore();
-    clearInterval(timer);
-    gameStart.disabled = false;
-  }
-  
-  if(checkSnakeOutOfBounds(snakeX, snakeY, IsSnakeOnItself)) {
+  // make snake hit itself
+  var isSnakeOnItself = snakeOnItself(snakeX, snakeY, snake)  
+  if(isSnakeOnItself) {
     writeScore();
     clearInterval(timer);
     gameStart.disabled = false;
     return
   }
-    */
   
-  /*
+  // make snake hit the wall
+  if(checkSnakeOutOfBounds(snakeX, snakeY, isSnakeOnItself)) {
+    writeScore();
+    clearInterval(timer);
+    gameStart.disabled = false;
+    return
+  }
+    
+  
+  // make snake eat the food
   snakeAteFootVar = didSnakeEatTheFood(snakeX, snakeY);
   if (snakeAteFootVar) {
     var newHead = { x: snakeX, y: snakeY };
     playerScore += speedSize;
     createFood();
   } 
-    */
   
-  /*
+  // make snake move
   if(!snakeAteFootVar) {
     var newHead = snake.pop();
     newHead.x = snakeX;
     newHead.y = snakeY;
   }
-    */
-    
+  snake.unshift(newHead);
 
-  // add new head to the snake
-  //snake.unshift(newHead);
-
-  // draw the snake
-  /*
+  // create the snake
   for (var index = 0, length = snake.length; index < length; index++) {
     createSquare(snake[index].x, snake[index].y);
   } 
-    */
-
-  // draw the food
-  //createSquare(snakeFood.x, snakeFood.y);
+    
+  // create the food
+  createSquare(snakeFood.x, snakeFood.y);
 }
 
 function checkSnakeOutOfBounds(snakeX, snakeY) {
@@ -162,10 +157,10 @@ function startGame() {
   snake = [];
   snake.push({ x: 0, y: cellWidth });
 
-  // initally create food
-  //createFood();
+  // create the food
+  createFood();
 
-  // initally set the timer
+  // make the snake move automatically
   // clearInterval(timer);
   // timer = setInterval(updateGameArea, 500 / speedSize);
 }
@@ -211,9 +206,9 @@ function initEvent() {
 }
 
 function init() {
-  //initElement();
-  //createGameArea()
-  //initEvent();
+  initElement();
+  createGameArea()
+  initEvent();
 }
 
 window.addEventListener('DOMContentLoaded', init);

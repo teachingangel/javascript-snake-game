@@ -33,13 +33,19 @@
 * inline the code for the snake to move
 * explain how the snake moves
 
-## Make the snake eat and hit the wall
+## Make the snake eat 
 15min
 
-* inline the code for the snake to eat and hit the wall
+* inline the code for the snake to eat
 * explain how the snake eats and hits the wall
 
-## Make the snake eat and hit the wall
+## Make the snake hit the wall
+15min
+
+* inline the code for the snake hit the wall
+* explain how the snake eats and hits the wall
+
+## Make the snake hit itself
 10min
 
 * inline the code for the snake hit itself
