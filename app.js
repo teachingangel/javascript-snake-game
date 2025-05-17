@@ -89,6 +89,8 @@ function didSnakeEatTheFood(snakeX, snakeY) {
 
 function updateGameArea() {
 
+  var snakeAteFootVar = false;
+
   createGameArea();
   
   var newPosition = checkDirectionUpdatePosition();
@@ -113,28 +115,35 @@ function updateGameArea() {
     */
   
   /*
-  var snakeAteFootVar = didSnakeEatTheFood(snakeX, snakeY);
+  snakeAteFootVar = didSnakeEatTheFood(snakeX, snakeY);
   if (snakeAteFootVar) {
     var newHead = { x: snakeX, y: snakeY };
     playerScore += speedSize;
     createFood();
-  } else {
+  } 
+    */
+  
+  /*
+  if(!snakeAteFootVar) {
     var newHead = snake.pop();
     newHead.x = snakeX;
     newHead.y = snakeY;
   }
     */
+    
 
   // add new head to the snake
-  // snake.unshift(newHead);
+  //snake.unshift(newHead);
 
   // draw the snake
-  /* for (var index = 0, length = snake.length; index < length; index++) {
+  /*
+  for (var index = 0, length = snake.length; index < length; index++) {
     createSquare(snake[index].x, snake[index].y);
-  } */
+  } 
+    */
 
   // draw the food
-  // createSquare(snakeFood.x, snakeFood.y);
+  //createSquare(snakeFood.x, snakeFood.y);
 }
 
 function checkSnakeOutOfBounds(snakeX, snakeY) {
@@ -154,7 +163,7 @@ function startGame() {
   snake.push({ x: 0, y: cellWidth });
 
   // initally create food
-  // createFood();
+  createFood();
 
   // initally set the timer
   // clearInterval(timer);
