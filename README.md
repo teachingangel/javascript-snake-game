@@ -5,8 +5,8 @@
 
 * install [git](https://github.com/apps/desktop)
 * install [vscode](https://code.visualstudio.com/)
+* clone repo to own space
 * clone repo to disk
-* install vscode 
 * open repo in vscode 
 
 ## Build the board
@@ -39,8 +39,24 @@
 * inline the code for the snake to eat and hit the wall
 * explain how the snake eats and hits the wall
 
-## Deploy the game and make it accessible over the web
+## Make the snake eat and hit the wall
+10min
 
+* inline the code for the snake hit itself
+* explain how the snake hit itself
+
+## Make the snake move automatically
+10min
+
+* inline code for automatically move
+* explain how the snake moves automatically
+
+## Deploy the game and make it accessible over the web
+10min
+
+* github -> settings -> Pages
+* deploy from a branch
+* deploy from master 
 
 ## Challenges
 30min
