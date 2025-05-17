@@ -98,6 +98,7 @@ function updateGameArea() {
   var snakeX = newPosition.snakeX;
   var snakeY = newPosition.snakeY;
     
+  /*
   // make snake hit itself
   var isSnakeOnItself = snakeOnItself(snakeX, snakeY, snake)  
   if(isSnakeOnItself) {
@@ -106,7 +107,9 @@ function updateGameArea() {
     gameStart.disabled = false;
     return
   }
+    */
   
+  /*
   // make snake hit the wall
   if(checkSnakeOutOfBounds(snakeX, snakeY, isSnakeOnItself)) {
     writeScore();
@@ -114,8 +117,9 @@ function updateGameArea() {
     gameStart.disabled = false;
     return
   }
+    */
     
-  
+  /*
   // make snake eat the food
   snakeAteFootVar = didSnakeEatTheFood(snakeX, snakeY);
   if (snakeAteFootVar) {
@@ -123,7 +127,9 @@ function updateGameArea() {
     playerScore += speedSize;
     createFood();
   } 
+    */
   
+  /*
   // make snake move
   if(!snakeAteFootVar) {
     var newHead = snake.pop();
@@ -131,14 +137,19 @@ function updateGameArea() {
     newHead.y = snakeY;
   }
   snake.unshift(newHead);
+  */
 
+  /*
   // create the snake
   for (var index = 0, length = snake.length; index < length; index++) {
     createSquare(snake[index].x, snake[index].y);
   } 
+    */
     
+  /*
   // create the food
   createSquare(snakeFood.x, snakeFood.y);
+  */
 }
 
 function checkSnakeOutOfBounds(snakeX, snakeY) {
@@ -158,7 +169,7 @@ function startGame() {
   snake.push({ x: 0, y: cellWidth });
 
   // create the food
-  createFood();
+  //createFood();
 
   // make the snake move automatically
   // clearInterval(timer);
