@@ -1,5 +1,5 @@
 'use strict';
-/*
+
 var gameStart = {},
   gameSpeed = {},
   gameArea = {},
@@ -27,6 +27,7 @@ function initElement() {
   gameArea.height = gameAreaHeight;
 }
 
+// Create food
 function createFood() {
   snakeFood = {
     x: Math.round(Math.random() * (gameAreaWidth - cellWidth) / cellWidth),
@@ -34,7 +35,8 @@ function createFood() {
   };
 }
 
-function control(x, y, array) {
+// Check if the food is on the snake
+function foodOnSnake(x, y, array) {
   for (var index = 0, length = array.length; index < length; index++) {
     if (array[index].x == x && array[index].y == y) return true;
   }
@@ -52,15 +54,11 @@ function createSquare(x, y) {
   gameAreaContext.fillRect(x * cellWidth, y * cellWidth, cellWidth, cellWidth);
 }
 
-function createGameArea() {
+function updateGameArea() {
   var snakeX = snake[0].x;
   var snakeY = snake[0].y;
 
-  gameAreaContext.fillStyle = '#FFFFFF';
-  gameAreaContext.fillRect(0, 0, gameAreaWidth, gameAreaHeight);
-
-  gameAreaContext.strokeStyle = '#000000';
-  gameAreaContext.strokeRect(0, 0, gameAreaWidth, gameAreaHeight);
+  createGameArea();
 
   if (snakeDirection == 'right') {
     snakeX++;
@@ -72,13 +70,15 @@ function createGameArea() {
     snakeY--;
   }
 
-  if ((snakeX == -1) || (snakeX == gameAreaWidth / cellWidth) || (snakeY == -1) || (snakeY == gameAreaHeight / cellWidth) || control(snakeX, snakeY, snake)) {
+  var foodOnSnakeVar = foodOnSnake(snakeX, snakeY, snake)  
+  
+  if(checkSnakeOutOfBounds(snakeX, snakeY, foodOnSnakeVar)) {
     writeScore();
     clearInterval(timer);
     gameStart.disabled = false;
-    return;
+    return
   }
-
+  
   if (snakeX == snakeFood.x && snakeY == snakeFood.y) {
     var newHead = { x: snakeX, y: snakeY };
     playerScore += speedSize;
@@ -98,6 +98,17 @@ function createGameArea() {
   createSquare(snakeFood.x, snakeFood.y);
 }
 
+function checkSnakeOutOfBounds(snakeX, snakeY, foodOnSnake) {
+  if ((snakeX == -1) || 
+    (snakeX == gameAreaWidth / cellWidth) || 
+    (snakeY == -1) || 
+    (snakeY == gameAreaHeight / cellWidth) || 
+    foodOnSnake) {
+      return true;
+  }
+  return false;
+}
+
 function startGame() {
   snake = [];
   snake.push({ x: 0, y: cellWidth });
@@ -105,7 +116,7 @@ function startGame() {
   createFood();
 
   clearInterval(timer);
-  timer = setInterval(createGameArea, 500 / speedSize);
+  timer = setInterval(updateGameArea, 500 / speedSize);
 }
 
 function onStartGame() {
@@ -132,6 +143,15 @@ function changeDirection(e) {
   else if (keys == '37' && snakeDirection != 'right') snakeDirection = 'left';
 }
 
+function createGameArea() {
+
+  gameAreaContext.fillStyle = '#FFFFFF';
+  gameAreaContext.fillRect(0, 0, gameAreaWidth, gameAreaHeight);
+
+  gameAreaContext.strokeStyle = '#000000';
+  gameAreaContext.strokeRect(0, 0, gameAreaWidth, gameAreaHeight);
+}
+
 function initEvent() {
   gameStart.addEventListener('click', onStartGame);
   window.addEventListener('keydown', changeDirection);
@@ -139,7 +159,8 @@ function initEvent() {
 
 function init() {
   initElement();
+  createGameArea()
   initEvent();
 }
-*/
+
 window.addEventListener('DOMContentLoaded', init);
