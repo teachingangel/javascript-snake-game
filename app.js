@@ -163,7 +163,7 @@ function startGame() {
   snake.push({ x: 0, y: cellWidth });
 
   // initally create food
-  createFood();
+  //createFood();
 
   // initally set the timer
   // clearInterval(timer);
