@@ -211,9 +211,9 @@ function initEvent() {
 }
 
 function init() {
-  initElement();
-  createGameArea()
-  initEvent();
+  //initElement();
+  //createGameArea()
+  //initEvent();
 }
 
 window.addEventListener('DOMContentLoaded', init);
